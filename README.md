@@ -16,7 +16,8 @@ python StockPopUp.py [STOCKNAME] [REFRESH-TIME] [LIVE-TIME] &
 ```
 
 ## Example Output: 
-![Example Output](/example_output.png)
+![Example Output](https://github.com/ParadoxicalNerd/Stock-Notifications/blob/master/example-output.png)
 
 ## Notes:
-To get the image in the popup, add the GraphUp.png and GraphDown.png to ~/.local/share/icons
+- All time is in seconds
+- To get the image in the popup, add the GraphUp.png and GraphDown.png to ~/.local/share/icons
