@@ -14,25 +14,56 @@ import sys
 
 def popup(name, value, _increase):
     if _increase > 0:
-        subprocess.Popen(
-            [
-                "notify-send",
-                "-i",
-                "GraphUp",
-                name + " Share Price",
-                "Current Value: " + str(value) + "\n Increased by: " + str(_increase),
-            ]
-        )
+        try:
+            subprocess.Popen(
+                [
+                    "notify-send",
+                    "-i",
+                    "GraphUp",
+                    name + " Share Price",
+                    "Current Value: "
+                    + str(value)
+                    + "\n Increased by: "
+                    + str(_increase),
+                ]
+            )
+        except:
+            subprocess.Popen(
+                [
+                    "notify-send",
+                    name + " Share Price",
+                    "Current Value: "
+                    + str(value)
+                    + "\n Increased by: "
+                    + str(_increase),
+                ]
+            )
+
     else:
-        subprocess.Popen(
-            [
-                "notify-send",
-                "-i",
-                "GraphDown",
-                name + " Share Price",
-                "Current Value: " + str(value) + "\n Decreased by: " + str(_increase),
-            ]
-        )
+        try:
+            subprocess.Popen(
+                [
+                    "notify-send",
+                    "-i",
+                    "GraphDown",
+                    name + " Share Price",
+                    "Current Value: "
+                    + str(value)
+                    + "\n Decreased by: "
+                    + str(_increase),
+                ]
+            )
+        except:
+            subprocess.Popen(
+                [
+                    "notify-send",
+                    name + " Share Price",
+                    "Current Value: "
+                    + str(value)
+                    + "\n Decreased by: "
+                    + str(_increase),
+                ]
+            )
 
 
 def fetch_stock(name):
