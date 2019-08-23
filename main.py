@@ -67,19 +67,24 @@ def popup(name, value, _increase):
 
 
 def fetch_stock(name):
-    data = si.get_quote_table(name)
-    return data
+    try:
+        data = si.get_quote_table(name)
+        return data
+    except ValueError:
+        print("Invalid stock name. Check and try again.")
+        logging.debug("Invalid stock name.")
+        return None
 
 
-class StockObject(object):
+class IntervalStockObject(object):
     def __init__(self, name, refresh_time):
         self.name = name
         self.interval = refresh_time
         self.stop = False
 
-        thread = threading.Thread(target=self.run, args=())
-        thread.daemon = True
-        thread.start()
+        self.thread = threading.Thread(target=self.run, args=())
+        self.thread.daemon = True
+        self.thread.start()
 
     def _stop(self):
         self.stop = True
@@ -100,9 +105,18 @@ class StockObject(object):
 
 
 if __name__ == "__main__":
-    NAME = str(sys.argv[1])
-    TIME = int(sys.argv[2])
-    example = StockObject(NAME, TIME)
-    time.sleep(int(sys.argv[3]))
-    example._stop()
+    if len(sys.argv) == 3 or len(sys.argv) == 4:
+        NAME = str(sys.argv[1])
+        if fetch_stock(NAME) != None:
+            TIME = int(sys.argv[2])
+            example = IntervalStockObject(NAME, TIME)
+            if len(sys.argv) == 3:
+                example.thread.join()
+            elif len(sys.argv) == 4:
+                time.sleep(int(sys.argv[3]))
+                example._stop()
+
+    else:
+        print("Invalid parameters")
+        logging.debug("Invalid parameters")
 
