@@ -6,13 +6,17 @@ Simple utility to track stock prices using popups in python3 written over one un
 - Elementary OS Juno
 
 ## Running
-Start from command line using the commmand: 
+Start from command line using the commmand if you want it to run till set time: 
 ```
 python3 StockPopUp.py [STOCKNAME] [REFRESH-TIME] [LIVE-TIME] &
-```
 OR
-```
 python StockPopUp.py [STOCKNAME] [REFRESH-TIME] [LIVE-TIME] &
+```
+Start from command line using the commmand if you want it to run till forever:
+```
+python3 StockPopUp.py [STOCKNAME] [REFRESH-TIME]&
+OR
+python StockPopUp.py [STOCKNAME] [REFRESH-TIME]&
 ```
 
 ## Example Output: 
